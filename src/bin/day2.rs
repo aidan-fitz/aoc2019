@@ -44,7 +44,7 @@ where P: AsRef<Path>, {
     match fs::read_to_string(filename) {
         Ok(contents) => Ok(contents.as_str().trim()
                                             .split(",")
-                                            .map(|s| s.parse::<u32>())
+                                            .map(str::parse::<u32>)
                                             .filter_map(Result::ok)
                                             .collect()),
         Err(e) => Err(e)
